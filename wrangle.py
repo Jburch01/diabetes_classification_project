@@ -7,8 +7,10 @@ from sklearn.model_selection import train_test_split
 
 
 def get_data():
-        df =  pd.read_csv('diabetes.csv')
-        df.columns = df.columns.str.lower()
+        df = pd.read_csv('diabetes_prediction_dataset.csv')
+        df.drop_duplicates(ignore_index=True, inplace=True)
+        df = df.drop(df[df.age < 1].index)
+        df = df.rename(columns={'diabetes':'diabetic'})
         return df
     
     
