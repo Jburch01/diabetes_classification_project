@@ -42,12 +42,12 @@ Diabetes is an ever growing issue that having an effective detection system coul
             - 60 -  69
             - 70+
         - Grouping bmi scores in to labels classified by the World Health Organization as:
-            - Underweight: BMI < 18.5 kg/m²
-            - Normal weight: BMI 18.5-24.9 kg/m²
-            - Overweight: BMI 25-29.9 kg/m²
-            - Obesity class I: BMI 30-34.9 kg/m²
-            - Obesity class II: BMI 35-39.9 kg/m²
-            - Obesity class III: BMI ≥ 40 kg/m²
+            - Underweight: BMI < 18.5 kg/m²(1)
+            - Normal weight: BMI 18.5-24.9 kg/m²(2)
+            - Overweight: BMI 25-29.9 kg/m²(3)
+            - Obesity class I: BMI 30-34.9 kg/m²(4)
+            - Obesity class II: BMI 35-39.9 kg/m²(5)
+            - Obesity class III: BMI ≥ 40 kg/m²(6)
     - Discover potentil drivers 
     - Create hypothesis driver correlation
     - Preform Statistical Test on drivers
