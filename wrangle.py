@@ -114,8 +114,12 @@ def get_distributions(df):
     
 
 def get_age_vis(df):
-   # count the number of occurrences of each bin
-    diabetic_count = df[df['diabetic'] == 1].groupby('age_bin')['diabetic'].count()
+    bins = [0, 18, 29, 39, 49, 59, 69, 80]
+    labels = ['1-18', '19-29', '30-39', '40-49', '50-59', '60-69', "70+"]
+    df['age_bin1'] = pd.cut(df['age'], bins=bins, labels=labels)
+
+    # count the number of occurrences of each bin
+    diabetic_count = df[df['diabetic'] == 1].groupby('age_bin1')['diabetic'].count()
 
     # create a bar plot
     sns.barplot(x=diabetic_count.index, y=diabetic_count)
@@ -127,6 +131,7 @@ def get_age_vis(df):
 
     # show the plot
     plt.show()
+    df.drop(columns='age_bin1')
     
     
 def test_age(df):
@@ -165,35 +170,50 @@ def A1c_stattest(df):
 
 
 def get_bmi_vis(df):
-    # Define the BMI class definitions for the legend
-    bmi_class_legend = [
-        '1: Underweight: BMI less than 18.5',
-        '2: Normal weight: BMI between 18.5 and 24.9',
-        '3: Overweight: BMI between 25 and 29.9',
-        '4: Obesity (Class 1): BMI between 30 and 34.9',
-        '5: Obesity (Class 2): BMI between 35 and 39.9',
-        '6: Extreme obesity (Class 3): BMI of 40 or higher'
+    # Define the BMI class order
+    bmi_class_order = [
+        1, 2, 3, 4, 5, 6
     ]
 
-    # Create the histogram with dodge grouping by diabetic status
-    ax = sns.histplot(data=df, x='bmi_class', hue='diabetic', multiple='dodge')
-    ax.tick_params(axis='x',labelsize=14)
-    # Create custom legend handles and labels
-    handles = [plt.Rectangle((0,0),1,1, color=c, ec="k") for c in sns.color_palette()]
+    titles = [ '1: Underweight: BMI less than 18.5',
+            '2: Normal weight: BMI between 18.5 and 24.9',
+            '3: Overweight: BMI between 25 and 29.9',
+            '4: Obesity (Class 1): BMI between 30 and 34.9',
+            '5: Obesity (Class 2): BMI between 35 and 39.9',
+            '6: Extreme obesity (Class 3): BMI of 40 or higher']
 
-    # handles = [plt.Rectangle((0,0),1,1, color=c, ec="k") for c in sns.color_palette()]
-    legend_labels = ['Non-Diabetic', 'Diabetic'] + bmi_class_legend
+    # Define the diabetic status order
+    diabetic_order = [0, 1]
+    diabetic_title = ['diabetic_No', 'diabetic_Yes']
 
-    # Set the legend with custom handles and labels
-    plt.legend(handles=handles, labels=legend_labels, bbox_to_anchor=(1, 1.021), ncol=1)
-    ax.get_xticklabels()[1].set_color("green")
-    ax.get_xticklabels()[2].set_color("red")
-    ax.get_xticklabels()[3].set_color("purple")
-    ax.get_xticklabels()[4].set_color("brown")
-    ax.get_xticklabels()[5].set_color("magenta")
-    ax.get_xticklabels()[6].set_color("grey")
-    # Set the plot title and display the plot
-    plt.title('BMI Class Distribution by Diabetic Status')
+    # Create a 2x3 grid of subplots
+    fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(15,10))
+    fig.suptitle('BMI Class Distribution Percentage by Diabetic Status', fontsize=20, fontweight='bold', y=1.02)
+
+    # Loop through each BMI class and create a barplot in the corresponding subplot
+    for i, bmi_class in enumerate(bmi_class_order):
+        # Determine the row and column index for the current subplot
+        row = i // 3
+        col = i % 3
+
+        # Subset the data to only include the current BMI class
+        data_subset = df[df['bmi_class'] == bmi_class]
+
+        # Calculate the counts of diabetic status for the current BMI class
+        counts = data_subset['diabetic'].value_counts(normalize=True)
+
+        # Create a barplot in the current subplot
+        ax = sns.barplot(x=counts.index, y=counts.values, ax=axes[row, col], hue=diabetic_title)
+        ax.set_title(titles[i], fontsize=14)
+        ax.set_xlabel('')
+        ax.set_ylabel('Proportion')
+        ax.set_ylim(0, 1)
+
+
+    # Adjust the layout of the subplots
+    plt.tight_layout()
+
+    # Display the plot
     plt.show()
 
     
