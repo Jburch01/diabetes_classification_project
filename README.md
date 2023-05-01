@@ -1,7 +1,16 @@
 # Predicting Diabetes 
 
 ---
-
+## Executive Summary
+- #### Project Goal
+    - Discover key drives that have a high indication of diabetes.
+    - Delvelope classification ML models for detecting diabetes in a patient
+- #### Key Findings
+    - Age, A1c, and BMI had the biggest impact on detecting diabetes
+    - As age increases do do the number of diabetic cases
+    - As A1c gets out of  range(5.7 - 6.2) more diabetic cases there are.
+- #### Next Steps
+    - Moving forward with this project I would drop this dataset and look to acquire a better dataset. Also I would research ever column/feature more thoroughly.
 ## Project Description
 
 Diabetes is a chronic medical condition characterized by high levels of glucose (sugar) in the blood. The hormone insulin, produced by the pancreas, regulates the amount of glucose in the bloodstream. In people with diabetes, the body either doesn't produce enough insulin or doesn't use it effectively, causing glucose to build up in the blood instead of being transported into cells to be used as energy. The ablility to effectivly screen diabetes in a patient would be higly valuable.  
