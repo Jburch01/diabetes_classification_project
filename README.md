@@ -43,13 +43,13 @@ Diabetes is an ever growing issue that having an effective detection system coul
     - Split data into train, validate, and test
 - ### Explore the data
     - #### Feature Engineering
-        - Grouping ages into bins as:
-            - 1 - 18
-            - 19 - 29
-            - 30 - 39
-            - 40 - 49
-            - 50 - 59
-            - 60 -  69
+        - Grouping ages into bins represented as an encoded number:
+            - 1 -  18 : 1
+            - 19 - 29 : 2
+            - 30 - 39 : 3
+            - 40 - 49 : 4
+            - 50 - 59 : 5
+            - 60 - 69 : 6
             - 70+
         - Grouping bmi scores in to labels classified by the World Health Organization as:
             - Underweight: BMI < 18.5 kg/m²(1)
