@@ -50,7 +50,7 @@ Diabetes is an ever growing issue that having an effective detection system coul
             - 40 - 49 : 4
             - 50 - 59 : 5
             - 60 - 69 : 6
-            - 70+
+            - 70+ : 7
         - Grouping bmi scores in to labels classified by the World Health Organization as:
             - Underweight: BMI < 18.5 kg/m²(1)
             - Normal weight: BMI 18.5-24.9 kg/m²(2)
